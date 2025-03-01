@@ -57,7 +57,7 @@ app.get("/ping", (req, res) => {
 });
 
 // Tarea periódica para hacer una solicitud cada 50 segundos
-cron.schedule('*/50 * * * * *', () => {
+cron.schedule('*/40 * * * * *', () => {
   fetch('http://localhost:3000/ping')
     .then(response => response.text())
     .then(data => console.log('Ping realizado:', data))
