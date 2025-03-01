@@ -3,6 +3,8 @@ const express = require("express");
 const multer = require("multer");
 const nodemailer = require("nodemailer");
 const cors = require("cors");
+const cron = require("node-cron"); // Importa node-cron para la tarea periódica
+const fetch = require('node-fetch'); // Importa fetch para hacer una solicitud HTTP
 
 const app = express();
 const port = 3000;
@@ -24,7 +26,9 @@ const transporter = nodemailer.createTransport({
     tls: {
       rejectUnauthorized: false, // Evita problemas con certificados SSL
     },
-  });
+});
+
+// Endpoint para enviar un correo con archivo adjunto
 app.post("/send-email", upload.single("pdf"), async (req, res) => {
   const { nombre, email, telefono, destinatario } = req.body;
   const pdfBuffer = req.file ? req.file.buffer : null;
@@ -45,6 +49,19 @@ app.post("/send-email", upload.single("pdf"), async (req, res) => {
     console.error("❌ Error al enviar el correo:", error);
     res.status(500).json({ error: "Error al enviar el correo" });
   }
+});
+
+// Endpoint 'ping' para mantener el servicio activo
+app.get("/ping", (req, res) => {
+  res.status(200).send("¡Estoy activo!");
+});
+
+// Tarea periódica para hacer una solicitud cada 50 segundos
+cron.schedule('*/50 * * * * *', () => {
+  fetch('http://localhost:3000/ping')
+    .then(response => response.text())
+    .then(data => console.log('Ping realizado:', data))
+    .catch(error => console.error('Error al hacer el ping:', error));
 });
 
 app.listen(port, () => {
