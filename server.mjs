@@ -55,7 +55,7 @@ app.get("/ping", (req, res) => {
 
 cron.schedule("*/40 * * * * *", async () => {
   try {
-    const response = await fetch("http://localhost:3000/ping");
+    const response = await fetch("https://expressuxdigital.onrender.com/ping");
     const data = await response.text();
     console.log("Ping realizado:", data);
   } catch (error) {
