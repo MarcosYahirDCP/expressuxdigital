@@ -1,14 +1,10 @@
 {
   "name": "servicio-email",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "server.mjs",  
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
@@ -18,5 +14,6 @@
     "node-fetch": "^3.3.2",
     "nodemailer": "^6.10.0",
     "serverless-http": "^3.2.0"
-  }
+  },
+  "type": "module"
 }
