@@ -1,10 +1,10 @@
-# fly.toml app configuration file generated for expressuxdigital on 2025-03-03T03:27:41Z
+# fly.toml app configuration file generated for expressuxdigital on 2025-03-03T03:48:11Z
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
 app = 'expressuxdigital'
-primary_region = 'fra'
+primary_region = 'gdl'
 
 [build]
 
