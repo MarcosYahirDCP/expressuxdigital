@@ -37,7 +37,7 @@ app.post("/send-email", upload.single("pdf"), async (req, res) => {
       to: destinatario,
       subject: "Documento PDF Adjunto",
       text: `Hola,\n\nHas recibido una nueva cotizacion. Los datos del cliente son: \n\n Nombre del cliente: ${nombre}.\nNúmero de Teléfono: ${telefono}\nCorreo electrónico: ${email}`,
-      attachments: pdfBuffer ? [{ filename: "cotizacion-${nombre}.pdf", content: pdfBuffer }] : [],
+      attachments: pdfBuffer ? [{ filename: `cotizacion-${nombre}.pdf`, content: pdfBuffer }] : [],
     };
 
     let info = await transporter.sendMail(mailOptions);
